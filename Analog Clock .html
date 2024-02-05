@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Clock  </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: black;
+            color: white;
+        }
+        .container{
+            position: relative;
+        }
+        .clock{
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+            background-color: rgba(67, 63, 95, 0.449);
+            border: 2px solid white;
+            box-shadow: 0px 0px 30px rgba(171, 145, 0, 0.379);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clock span {
+            position: absolute;
+            transform: rotate(calc(30deg*var(--i)));
+            inset: 15px;
+            text-align: center;
+            /* align-items: center; */
+            /* justify-content: center; */
+            /* justify-items: center; */
+            
+        }
+        .clock::before{
+            content: "";
+            position:absolute;
+            height: 8px;
+            width: 8px;
+            border-radius: 58%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clock span b{
+            position: absolute;
+            transform: rotate(calc(-30deg *var(--i)));
+        }
+        .hand{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .hand i{
+            position: absolute;
+            background-color: var(--clr);
+            width: 4px;
+            height: 70px;
+            border-radius: 8px;
+        }
+        h4{
+            position: relative;
+            bottom: 80px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 800;
+            color: rgb(27, 197, 197);
+        }
+        #hours{
+            font-weight: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <div  style="--clr:rgb(137, 184, 30);"  class="hand" id="hours"> <i> </i> </div>
+            <div style="--clr:rgb(97, 15, 9);" class="hand" id="min"> <i> </i> </div>
+            <div style="--clr:rgb(221, 15, 111);"  class="hand" id="sec"> <i> </i> </div>
+            <h4> SISHIR </h4>
+            <span style="--i:1"><b>1</b></span>
+            <span style="--i:2"><b>2</b></span >
+            <span style="--i:3"><b>3</b></span>
+            <span style="--i:4"><b>4</b></span>
+            <span style="--i:5"><b>5</b></span>
+            <span style="--i:6"><b>6</b></span>
+            <span style="--i:7"><b>7</b></span>
+            <span style="--i:8"><b>8</b></span>
+            <span style="--i:9"><b>9</b></span>
+            <span style="--i:10"><b>10</b></span>
+            <span style="--i:11"><b>11</b></span>
+            <span style="--i:12"><b>12</b></span>
+        </div>
+    </div>
+    <script>
+        let hour = document.getElementById("hours");
+        let min = document.getElementById("min");
+        let sec = document.getElementById("sec");
+
+        function display(){
+            let date = new Date();
+
+            let hh = date.getHours();
+            let mm = date.getMinutes();
+            let ss = date.getSeconds();
+
+            let hRotation = 30*hh+mm/2;
+            let mRotation = 6*mm;
+            let sRotation = 6*ss;
+
+            hour.style.transform=`rotate(${hRotation}deg)`;
+            min.style.transform = `rotate(${mRotation}deg)`;
+            sec.style.transform = `rotate(${sRotation}deg)`;
+
+        }
+        setInterval(display, 1000);
+
+    
+    </script>
+</body>
+</html>
